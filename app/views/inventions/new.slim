@@ -1,0 +1,32 @@
+div class="form-container"
+  h1 New Invention
+
+  = form_with url: inventions_path, id: "new_invention" do |f|
+    = f.text_field :title, class: "form-control", autofocus: true, placeholder: "Title", required: true
+    = f.text_area :description, class: "form-control", placeholder: "Description", required: true 
+    div 
+      = f.label "Bits"
+      h6 id="bits-notice" style="color:red;display:none;"
+        | Please select at least one bit.
+    div class="checkbox-container row"
+      - @bits.each do |bit|
+        div class="col-12 col-sm-6 col-lg-3"
+          = f.check_box :bits_used_ids, { multiple: true }, bit.id, false
+          label class="form-checkbox"
+            = bit.name
+    = tag.input type: "text", class: "form-control", id: "materials-used", autofocus: true, placeholder: "Materials Used (use comma to seperate)"
+    div id="materials-remove-message" style="display:none;"
+      | Click material to remove
+      hr
+    div id="materials-display"
+    = f.text_field :image_url, placeholder: "Image URL", class: "form-control"
+    div
+      = f.check_box :display_name, checked: true
+      label class:="form-checkbox checkbox inline"
+        |  Display Name: #{current_user.name}
+    div
+      = f.check_box :display_email, checked: true
+      label class="form-checkbox"
+        | Display Email: #{current_user.email}
+
+    = f.submit class: "btn btn-dark form-input", id: "submit-new-invention"

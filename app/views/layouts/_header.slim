@@ -1,0 +1,16 @@
+nav class="navbar navbar-expand-lg navbar-light"
+  = link_to "LittleBits", root_path, class: "navbar-brand"
+  ul class="navbar-nav ml-auto"
+    - if user_signed_in?
+      li class="nav-item"
+        = button_to "Add Invention", new_invention_path, class: "btn btn-dark", method: :get
+      li class="nav-item"
+        = link_to "Log out", destroy_user_session_path, class: "nav-link", method: :delete
+        
+    - else
+      li class="nav-item"
+        = link_to "Admin Login", new_admin_user_session_path, class: "nav-link"
+      li class="nav-item"
+        = link_to "User Login", new_user_session_path, class: "nav-link"
+      li class="nav-item"
+        = link_to "User Signup", new_user_registration_path, class: "nav-link"

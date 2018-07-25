@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Little Bits</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <%= tag.div class: "container" do %>
+    <%= render template: "layouts/_header" %>
+      <% if notice %>
+      	<div class='alert alert-success text-center'>
+      		<%= notice %>
+      	</div>
+      <% elsif alert %>
+      	<div class='alert alert-danger text-center'>
+      		<%= alert %>
+      	</div>
+      <% end %>
+      <%= yield %>
+    <% end %>
+  </body>
+</html>

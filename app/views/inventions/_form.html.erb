@@ -1,0 +1,17 @@
+<%= form_with(model: invention, local: true) do |form| %>
+  <% if invention.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(invention.errors.count, "error") %> prohibited this invention from being saved:</h2>
+
+      <ul>
+      <% invention.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

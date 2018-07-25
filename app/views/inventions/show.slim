@@ -1,0 +1,29 @@
+p id="notice"
+  - notice 
+
+div class="container"
+  div class="row align-items-start"
+    div class="col-4"
+      div class="card"
+        img class="card-img-top" src=@invention.image_url
+        div class="card-body"
+          h5 class="card-title"
+            | #{@invention.title}
+          - if @invention.display_name
+              h6
+                | #{@invention.user_name.titlecase}
+          - if @invention.display_email
+            p
+              | #{@invention.user_email}
+          p 
+            | #{@invention.description}
+          - if @materials.length > 0
+            p
+              | Materials:  #{@materials.join(', ')}
+          - if @bits.length > 0
+            p
+              | Bits:  #{@bits.join(', ')}
+
+          - if user_signed_in?
+            - if current_user.id == @invention.user_id
+              = button_to "Edit Invention", edit_invention_path(@invention.id), method: :get, class: "btn btn-dark"

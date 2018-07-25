@@ -1,0 +1,2 @@
+module InventionBitsHelper
+end

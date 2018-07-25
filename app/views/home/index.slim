@@ -1,0 +1,20 @@
+div class="container"
+  div class="row align-items-start"
+    - for invention in @inventions
+      div class="col-4"
+        div class="card"
+          = link_to invention_path(invention.id)
+            img class="card-img-top" src=invention.image_url
+          div class="card-body"
+            = link_to invention_path(invention.id), style: "text-decoration:none;"
+              h5 class="card-title"
+                | #{invention.title}
+            - if invention.display_name
+              h6
+                | #{invention.user_name.titlecase}
+            p 
+              | #{invention.description}
+
+            - if user_signed_in?
+              - if current_user.id == invention.user_id
+                = button_to "Edit Invention", edit_invention_path(invention.id), method: :get, class: "btn btn-dark"
